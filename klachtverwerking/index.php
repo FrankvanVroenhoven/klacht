@@ -60,12 +60,12 @@ try {
 
     // Log form data to log.txt
     $log = new Logger('klacht');
-    $log->pushHandler(new StreamHandler('log.txt', Logger::INFO));
+    $log->pushHandler(new StreamHandler('info.log', Logger::INFO));
     $log->info("Form Data - Name: $naam, Email: $email, Klacht: $klacht");
 } catch (Exception $e) {
         // Log the error message
     $log = new Logger('klacht');
-    $log->pushHandler(new StreamHandler('log.txt', Logger::ERROR));
+    $log->pushHandler(new StreamHandler('info.log', Logger::ERROR));
     $log->error($e->getMessage());
 }
 ?>
