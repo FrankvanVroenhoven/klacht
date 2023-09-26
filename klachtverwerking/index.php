@@ -21,17 +21,22 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require '/vendor/autoload.php';
+require 'vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 $email = $_POST['email'];
 $naam = $_POST['naam'];
 $klacht = $_POST['klacht'];
+
+// Load Monolog
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 try {
     //Server settings
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.stuff.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'example@.com';                     //SMTP username
     $mail->Password   = 'password';                               //SMTP password
@@ -49,9 +54,19 @@ try {
     $mail->Body    = $klacht;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
+    // Send the email
     $mail->send();
     echo 'Message has been sent';
+
+    // Log form data to log.txt
+    $log = new Logger('klacht');
+    $log->pushHandler(new StreamHandler('log.txt', Logger::INFO));
+    $log->info("Form Data - Name: $naam, Email: $email, Klacht: $klacht");
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}?>
+        // Log the error message
+    $log = new Logger('klacht');
+    $log->pushHandler(new StreamHandler('log.txt', Logger::ERROR));
+    $log->error($e->getMessage());
+}
+?>
 </html>
