@@ -20,7 +20,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
+//Load Composer's autoloader penis
 require 'vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions

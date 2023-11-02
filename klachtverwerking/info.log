@@ -13,3 +13,4 @@
 [2023-09-26T10:01:21.246958+02:00] klacht.ERROR: Invalid address:  (cc): cc [] []
 [2023-09-26T10:01:51.010375+02:00] klacht.ERROR: SMTP Error: Could not authenticate. [] []
 [2023-09-26T10:04:33.123019+02:00] klacht.ERROR: Invalid address:  (From): email sender [] []
+[2023-09-29T16:01:28.691092+02:00] klacht.ERROR: Invalid address:  (From): email sender [] []
